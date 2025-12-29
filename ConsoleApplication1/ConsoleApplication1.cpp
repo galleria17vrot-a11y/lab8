@@ -7,6 +7,7 @@ using namespace std;
 #include "file_reader.h"
 #include "constants.h"
 #include "filter.h"
+#include "Sort.h"
 
 void output(product_catalog* catalog) {
     /********** вывод стоимости **********/
@@ -70,7 +71,102 @@ int main() {
             output(filtered[i]);
         }
         delete[] filtered;
-        
+        int (*criteria)(product_catalog * exemplar1, product_catalog * exemplar2);
+        void (*sort)(product_catalog * array[], int size, int (*criteria)(product_catalog * exemplar1, product_catalog * exemplar2));
+        SetConsoleCP(CP_UTF8); SetConsoleOutputCP(CP_UTF8);
+        cout << "\nМетоды сортировки:\n";
+        cout << "1)Сортировка выбором (Selection sort)\n";
+        cout << "2)Сортировка слиянием (Merge sort)\n";
+        cout << "\nВыберите метод сортировки: ";
+        cin >> item;
+        cout << "\n";
+        switch (item)
+        {
+        case 1:
+            sort = selection_sort;
+            cout << "***** Сортировка выбором (Selection sort) *****\n\n";
+            break;
+        case 2:
+            sort = merge_sort;
+            cout << "***** Сортировка слиянием (Merge sort) *****\n\n";
+            break;
+        default:
+            throw 3;
+        }
+        cout << "\nКритерии сортировки:\n";
+        cout << "1)По убыванию количества товара на складе\n";
+        cout << "2)По возрастанию категории товара, а в рамках одной категории по убыванию стоимости\n";
+        cout << "\nВыберите критерий сортировки: ";
+        cin >> item;
+        cout << "\n";
+        switch (item)
+        {
+        case 1:
+            criteria = criteria1;
+            cout << "***** Сортировка выбором (Selection sort) *****\n\n";
+            break;
+        case 2:
+            criteria = criteria2;
+            cout << "***** Сортировка слиянием (Merge sort) *****\n\n";
+            break;
+        default:
+            throw 4;
+        }
+        sort(catalogs, size, criteria);
+        for (int i = 0; i < size; i++)
+        {
+            output(catalogs[i]);
+        }
+        SetConsoleCP(CP_UTF8); SetConsoleOutputCP(CP_UTF8);
+        cout << "\nКатегории товаров:\n";
+        cout << "1)Промтовары\n";
+        cout << "2)Инструменты\n";
+        cout << "3)Электроника\n";
+        cout << "4)Автотовары\n";
+        cout << "5)Канцтовары\n";
+        cout << "6)Продукты\n";
+        cout << "7)Одежда\n";
+        cout << "\nВыберите категорию товаров: ";
+        cin >> item;
+        cout << "\n";
+        char category1[MAX_STRING_SIZE];
+        switch (item)
+        {
+        case 1:
+            strcpy_s(category1, MAX_STRING_SIZE, "Промтовары");
+            cout << "***** Стоимость всех промтоваров *****\n\n";
+            break;
+        case 2:
+            strcpy_s(category1, MAX_STRING_SIZE, "Инструменты");
+            cout << "***** Стоимость всех инструментов *****\n\n";
+            break;
+        case 3:
+            strcpy_s(category1, MAX_STRING_SIZE, "Электроника");
+            cout << "***** Стоимость всей электроники *****\n\n";
+            break;
+        case 4:
+            strcpy_s(category1, MAX_STRING_SIZE, "Автотовары");
+            cout << "***** Стоимость всех автотоваров *****\n\n";
+            break;
+        case 5:
+            strcpy_s(category1, MAX_STRING_SIZE, "Канцтовары");
+            cout << "***** Стоимость всех канцтоваров *****\n\n";
+            break;
+        case 6:
+            strcpy_s(category1, MAX_STRING_SIZE, "Продукты");
+            cout << "***** Стоимость всех продуктов *****\n\n";
+            break;
+        case 7:
+            strcpy_s(category1, MAX_STRING_SIZE, "Одежда");
+            cout << "***** Стоимость всей одежды *****\n\n";
+            break;
+        default:
+            throw 5;
+        }
+        for (int i = 0; i < size; i++)
+        {
+            delete catalogs[i];
+        }
     }
     catch (const int error)
     {
