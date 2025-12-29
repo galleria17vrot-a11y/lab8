@@ -125,11 +125,13 @@
   <ItemGroup>
     <ClCompile Include="ConsoleApplication1.cpp" />
     <ClCompile Include="file_reader.cpp" />
+    <ClCompile Include="filter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="data.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="filter.h" />
     <ClInclude Include="product_catalog.h" />
     <ClInclude Include="constants.h" />
     <ClInclude Include="file_reader.h" />
