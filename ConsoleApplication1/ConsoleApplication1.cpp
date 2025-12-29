@@ -29,7 +29,6 @@ int main() {
     cout << "Лабораторная работа #8\n";
     cout << "Вариант #10. Каталог товаров\n";
     cout << "Автор: Подрез Виктория\n";
-    cout << "Группа: 25Пинж-1д.\n\n";
     product_catalog* catalogs[MAX_FILE_ROWS_COUNT];
     int size;
     try
