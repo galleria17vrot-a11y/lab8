@@ -2,8 +2,12 @@
 
 #include <iostream>
 
+using namespace std;
+
 int main()
 {
-    std::cout << "Hello World!\n";
+    cout << "Laboratory work #8. GIT\n";
+    cout << "Variant #10\n";
+    cout << "Author: Vika\n";
 }
 
